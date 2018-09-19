@@ -2,7 +2,7 @@ package activity
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/data"
-	)
+)
 
 // Context describes the execution context for an Activity.
 // It provides access to attributes, task and Flow information.
@@ -65,7 +65,7 @@ type Host interface {
 	Return(returnData map[string]*data.Attribute, err error)
 
 	//todo rename, essentially the flow's attrs for now
-	WorkingData() data.Scope
+	WorkingData() data.MutableScope
 
 	// GetResolver gets the resolver associated with the activity host
 	GetResolver() data.Resolver
@@ -73,7 +73,6 @@ type Host interface {
 	//Map with action specific details/properties, flowId, etc.
 	//GetDetails() map[string]string
 }
-
 
 // Deprecated: Use ActivityHost() instead.
 type FlowDetails interface {
@@ -100,6 +99,6 @@ type SharedTempDataSupport interface {
 // GetSharedTempDataSupport for the activity
 func GetSharedTempDataSupport(ctx Context) (SharedTempDataSupport, bool) {
 
-	ts, ok :=  ctx.(SharedTempDataSupport)
+	ts, ok := ctx.(SharedTempDataSupport)
 	return ts, ok
 }
